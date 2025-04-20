@@ -1,14 +1,14 @@
+
+pipeline {
 tools {
     jdk 'jdk17' // Must match the name in Jenkins -> Global Tool Configuration
     maven 'Maven 3.8.1'
 }
 
 environment {
-    JAVA_HOME = "${tool 'jdk17'}"
+    JAVA_HOME = ""
     PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
 }
-
-pipeline {
     agent any
 
     environment {
