@@ -1,3 +1,13 @@
+tools {
+    jdk 'jdk17' // Must match the name in Jenkins -> Global Tool Configuration
+    maven 'Maven 3.8.1'
+}
+
+environment {
+    JAVA_HOME = "${tool 'jdk17'}"
+    PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
+}
+
 pipeline {
     agent any
 
@@ -8,6 +18,13 @@ pipeline {
         DOCKER_USERNAME = credentials('nayan1103')  // Jenkins credentials ID for Docker username
         DOCKER_PASSWORD = credentials('Gopala@1980')  // Jenkins credentials ID for Docker password
     }
+
+    agent {
+            docker {
+                image 'maven:3.8.6-openjdk-17'  // Use Maven with JDK 17
+                args '-v /tmp:/tmp'  // Optional: Mount directories if needed
+            }
+        }
 
     stages {
         stage('Checkout') {
