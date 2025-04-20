@@ -12,7 +12,6 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the latest code from the repository
                 git branch: 'master', url: 'https://github.com/nayanacharya7/project-test.git'
             }
         }
